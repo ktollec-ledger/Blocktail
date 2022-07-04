@@ -20,3 +20,4 @@ urls:
 mounts:
     scenes: "game://Scenes"
     objects: "game://GameObjects"
+    lib: "game://Lib"

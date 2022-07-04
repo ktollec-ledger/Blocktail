@@ -6,4 +6,4 @@ Sprite:
         height: 1.0
         unit: "ViewPercentage"
 Script:
-    source: "self://SampleObject.lua"
+    source: "self://LoginManager.lua"

@@ -10,5 +10,5 @@ View:
     referential: "TopLeft"
 
 GameObjects:
-    sampleGameObject:
-        type: "SampleObject"
+    login_manager:
+        type: "LoginManager"
