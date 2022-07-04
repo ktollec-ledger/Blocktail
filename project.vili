@@ -1,0 +1,22 @@
+id: "blocktail"
+name: "Blocktail"
+version: "0.1.0"
+authors: ["Ledger"]
+description: "Simple project to get started with ObEngine"
+obengine_version: "0.5.0"
+keywords: ["sample", "example"]
+categories: ["learning", "template"]
+license: "MIT"
+exclude: [".gitignore"]
+source: "https://github.com/ObEngine/SampleProject"
+
+urls:
+    homepage: "https://github.com/ObEngine/SampleProject"
+    issues: "https://github.com/ObEngine/SampleProject/issues"
+    readme: "https://github.com/ObEngine/SampleProject/tree/master/README.md"
+    documentation: "https://github.com/ObEngine/SampleProject/wiki"
+    license: "https://github.com/ObEngine/SampleProject/tree/master/LICENSE"
+
+mounts:
+    scenes: "game://Scenes"
+    objects: "game://GameObjects"
