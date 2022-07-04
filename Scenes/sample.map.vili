@@ -12,3 +12,6 @@ View:
 GameObjects:
     login_manager:
         type: "LoginManager"
+
+    beverage:
+        type: "Beverage"
