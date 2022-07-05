@@ -1,4 +1,3 @@
----@module json
 --
 -- json.lua
 --

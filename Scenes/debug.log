@@ -1,0 +1,15 @@
+[09:13:52.745]<info> : Logger initialized
+[09:13:52.746]<info> : [ObEngine] Tiled Integration started
+[09:13:52.746]<info> :   - Input file : map.json
+[09:13:52.746]<info> :   - Output file : map.json.vili
+[09:13:52.746]<info> :   - Current working directory : /home/ktollec/Projects/Personal/ObEngine/Execution/Projects/Blocktail/Scenes
+[09:13:52.823]<error> : filesystem error: cannot make canonical path: No such file or directory [tilemap/tilemap_packed.json]
+[09:13:52.823]<info> : Something went wrong :(
+[09:15:16.599]<info> : Logger initialized
+[09:15:16.599]<info> : [ObEngine] Tiled Integration started
+[09:15:16.599]<info> :   - Input file : map.json
+[09:15:16.599]<info> :   - Output file : map.json.vili
+[09:15:16.600]<info> :   - Current working directory : /home/ktollec/Projects/Personal/ObEngine/Execution/Projects/Blocktail/Scenes
+[09:15:16.641]<debug> :     Loading tileset at path /home/ktollec/Projects/Personal/ObEngine/Execution/Projects/Blocktail/Sprites/Tilesets/tilemap_packed.json
+[09:15:16.641]<debug> :     Loading tileset at path /home/ktollec/Projects/Personal/ObEngine/Execution/Projects/Blocktail/Sprites/Tilesets/tilemap_packed.json
+[09:15:16.661]<info> : Done :)

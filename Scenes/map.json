@@ -206,11 +206,11 @@
  "tilesets":[
         {
          "firstgid":1,
-         "source":"tilemap\/tilemap_packed.json"
+         "source":"../Sprites/Tilesets/tilemap_packed.json"
         }, 
         {
          "firstgid":487,
-         "source":"..\/TiledIntegration-0.1.2\/tilemap\/tilemap_packed.json"
+         "source":"../Sprites/Tilesets/tilemap_packed.json"
         }],
  "tilewidth":16,
  "type":"map",

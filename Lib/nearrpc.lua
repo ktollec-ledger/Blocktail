@@ -1,8 +1,23 @@
----@module nearrpc
 local NEAR_RPC_ENDPOINT = "http://rpc.testnet.near.org";
 
-local function view_account(account_id)
-    local result = jsonrpc(NEAR_RPC_ENDPOINT) {
+local NETWORK_ENDPOINTS = {
+    testnet = "http://rpc.testnet.near.org",
+    mainnet = "http://rpc.mainnet.near.org",
+    betanet = "https://rpc.betanet.near.org"
+}
+
+local ACCOUNT_ID_NETWORK_MAPPING = {
+    near = "mainnet",
+    testnet = "testnet"
+}
+
+local function get_network_from_account_id(account_id)
+    return ACCOUNT_ID_NETWORK_MAPPING[account_id:gmatch("%.(%a+)$")()];
+end
+
+local function view_account(account_id, network)
+    local endpoint = NETWORK_ENDPOINTS[network or get_network_from_account_id(account_id) or "mainnet"];
+    local result = jsonrpc(endpoint) {
         jsonrpc = "2.0",
         id = "dontcare",
         method = "query",
@@ -15,8 +30,9 @@ local function view_account(account_id)
     return result;
 end
 
-local function view_contract_state(account_id, prefix_base64)
-    local result = jsonrpc(NEAR_RPC_ENDPOINT) {
+local function view_contract_state(account_id, prefix_base64, network)
+    local endpoint = NETWORK_ENDPOINTS[network or get_network_from_account_id(account_id) or "mainnet"];
+    local result = jsonrpc(endpoint) {
         jsonrpc = "2.0",
         id = "dontcare",
         method = "query",
@@ -31,8 +47,9 @@ local function view_contract_state(account_id, prefix_base64)
     return result;
 end
 
-local function send_transaction(signed_transaction_base64)
-    local result = jsonrpc(NEAR_RPC_ENDPOINT) {
+local function send_transaction(signed_transaction_base64, network)
+    local endpoint = NETWORK_ENDPOINTS[network or "mainnet"];
+    local result = jsonrpc(endpoint) {
         jsonrpc = "2.0",
         id = "dontcare",
         method = "broadcast_tx_async",
@@ -42,8 +59,9 @@ local function send_transaction(signed_transaction_base64)
     return result;
 end
 
-local function get_latest_block()
-    local result = jsonrpc(NEAR_RPC_ENDPOINT) {
+local function get_latest_block(network)
+    local endpoint = NETWORK_ENDPOINTS[network or "mainnet"];
+    local result = jsonrpc(endpoint) {
         jsonrpc = "2.0",
         id = "dontcare",
         method = "block",
@@ -55,9 +73,10 @@ local function get_latest_block()
     return result.result.header.height
 end
 
-local function get_gas(block)
-    block = block or get_latest_block()
-    local result = jsonrpc(NEAR_RPC_ENDPOINT) {
+local function get_gas(block, network)
+    block = block or get_latest_block();
+    local endpoint = NETWORK_ENDPOINTS[network or "mainnet"];
+    local result = jsonrpc(endpoint) {
         jsonrpc = "2.0",
         id = "dontcare",
         method = "gas_price",
@@ -67,8 +86,9 @@ local function get_gas(block)
     return result;
 end
 
-local function call_contract_function(account_id, method_name, args_base64)
-    local result = jsonrpc(NEAR_RPC_ENDPOINT) {
+local function call_contract_function(account_id, method_name, args_base64, network)
+    local endpoint = NETWORK_ENDPOINTS[network or get_network_from_account_id(account_id) or "mainnet"];
+    local result = jsonrpc(endpoint) {
         jsonrpc = "2.0",
         id = "dontcare",
         method = "query",
@@ -89,16 +109,19 @@ function Contract:_init(contract_address)
     self.contract_address = contract_address;
 end
 
----@module json
+---@module "Lib.json"
 local json = require("lib://json");
+---@module "Lib.base64"
+local base64 = require("lib://base64");
 function Contract:__index(method_name)
     return function(...)
-        local response = call_contract_function(self.contract_address, method_name, "e30K");
+        local jsonified_args = json.encode { ... };
+        local args_b64 = base64.encode(jsonified_args);
+        local response = call_contract_function(self.contract_address, method_name, args_b64);
         if response.result ~= nil then
             if response.result.result ~= nil then
                 local decoded_string = "";
                 for _, charcode in pairs(response.result.result) do
-                    print("Charcode", charcode);
                     decoded_string = decoded_string .. string.char(charcode);
                 end
                 local decoded_content = json.decode(decoded_string);

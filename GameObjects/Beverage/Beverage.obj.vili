@@ -1,11 +1,2 @@
 Script:
     source: "self://Beverage.lua"
-Collider:
-    points: [
-        {x: 2, y: 20},
-        {x: 9, y: 20},
-        {x: 9, y: 23},
-        {x: 2, y: 23}
-    ]
-    unit: "ScenePixels"
-    tag: "Character"

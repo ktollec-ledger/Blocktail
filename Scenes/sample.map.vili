@@ -10,8 +10,11 @@ View:
     referential: "TopLeft"
 
 GameObjects:
-    login_manager:
-        type: "LoginManager"
+    contract_manager:
+        type: "ContractManager"
 
     beverage:
         type: "Beverage"
+        Requires:
+            username: "aube"
+            playable: false
