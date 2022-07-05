@@ -1,0 +1,7 @@
+[10:02:31.363]<info> : Logger initialized
+[10:02:31.363]<info> : [ObEngine] Tiled Integration started
+[10:02:31.363]<info> :   - Input file : Scenes/map.json
+[10:02:31.363]<info> :   - Output file : Scenes/map2.json.vili
+[10:02:31.363]<info> :   - Current working directory : /home/ktollec/Projects/Personal/ObEngine/Execution/Projects/Blocktail
+[10:02:31.425]<debug> :     Loading tileset at path /home/ktollec/Projects/Personal/ObEngine/Execution/Projects/Blocktail/Sprites/Tilesets/tilemap_packed.json
+[10:02:31.448]<info> : Done :)
