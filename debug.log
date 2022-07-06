@@ -5,3 +5,18 @@
 [10:02:31.363]<info> :   - Current working directory : /home/ktollec/Projects/Personal/ObEngine/Execution/Projects/Blocktail
 [10:02:31.425]<debug> :     Loading tileset at path /home/ktollec/Projects/Personal/ObEngine/Execution/Projects/Blocktail/Sprites/Tilesets/tilemap_packed.json
 [10:02:31.448]<info> : Done :)
+[13:50:43.749]<info> : Logger initialized
+[13:50:43.750]<info> : [ObEngine] Tiled Integration started
+[13:50:43.751]<info> :   - Input file : Scenes/map_new.json
+[13:50:43.751]<info> :   - Output file : Scenes/map2_new.json.vili
+[13:50:43.751]<info> :   - Current working directory : /home/ktollec/Projects/Personal/ObEngine/Execution/Projects/Blocktail
+[13:50:43.806]<error> : filesystem error: cannot make canonical path: No such file or directory [Scenes/HACKATHON/tilemap/tilemap_packed.json]
+[13:50:43.806]<info> : Something went wrong :(
+[13:52:03.421]<info> : Logger initialized
+[13:52:03.422]<info> : [ObEngine] Tiled Integration started
+[13:52:03.422]<info> :   - Input file : Scenes/map_new.json
+[13:52:03.422]<info> :   - Output file : Scenes/map2_new.json.vili
+[13:52:03.422]<info> :   - Current working directory : /home/ktollec/Projects/Personal/ObEngine/Execution/Projects/Blocktail
+[13:52:03.495]<debug> :     Loading tileset at path /home/ktollec/Projects/Personal/ObEngine/Execution/Projects/Blocktail/Sprites/Tilesets/tilemap_packed.json
+[13:52:03.496]<debug> :     Loading tileset at path /home/ktollec/Projects/Personal/ObEngine/Execution/Projects/Blocktail/Sprites/Tilesets/tilemap_packed.json
+[13:52:03.517]<info> : Done :)

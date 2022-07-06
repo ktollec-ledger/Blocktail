@@ -1,0 +1,20 @@
+Meta:
+    name: "Battle"
+
+View:
+    size: 1.0
+    position:
+        x: 0.0
+        y: 0.0
+        unit: "SceneUnits"
+    referential: "TopLeft"
+
+GameObjects:
+    contract_manager:
+        type: "ContractManager"
+
+    beverage:
+        type: "BattleManager"
+        Requires:
+            player1: "aube"
+            player2: "maximilien"

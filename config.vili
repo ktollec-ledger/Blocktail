@@ -16,3 +16,4 @@ Input:
         RLeft: "Released: Q"
         RRight: "Released: D"
         Goto: "Pressed: RMB"
+        SwapEquipment: "Pressed: W"

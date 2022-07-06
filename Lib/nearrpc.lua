@@ -88,6 +88,7 @@ end
 
 local function call_contract_function(account_id, method_name, args_base64, network)
     local endpoint = NETWORK_ENDPOINTS[network or get_network_from_account_id(account_id) or "mainnet"];
+    print("ENDPOINT", endpoint, account_id, method_name, args_base64);
     local result = jsonrpc(endpoint) {
         jsonrpc = "2.0",
         id = "dontcare",
@@ -100,6 +101,7 @@ local function call_contract_function(account_id, method_name, args_base64, netw
             args_base64 = args_base64
         }
     };
+    print("RPC done")
     return result;
 end
 
@@ -114,8 +116,8 @@ local json = require("lib://json");
 ---@module "Lib.base64"
 local base64 = require("lib://base64");
 function Contract:__index(method_name)
-    return function(...)
-        local jsonified_args = json.encode { ... };
+    return function(self, fnargs)
+        local jsonified_args = json.encode(fnargs);
         local args_b64 = base64.encode(jsonified_args);
         local response = call_contract_function(self.contract_address, method_name, args_b64);
         if response.result ~= nil then

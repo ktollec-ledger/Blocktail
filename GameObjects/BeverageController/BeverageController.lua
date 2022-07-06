@@ -88,11 +88,7 @@ Event.Actions.RDown = set_move("down", false);
 Event.Actions.RLeft = set_move("left", false);
 Event.Actions.RRight = set_move("right", false);
 
-function BeverageController:_tilt_sprites(angle)
-    for _, sprite in pairs(self.beverage.sprites) do
-        sprite:set_rotation(angle);
-    end
-end
+
 
 local tilt_angle = 0;
 local tilt_direction = 1;
@@ -126,7 +122,7 @@ function Event.Game.Update(event)
             tilt_direction = 1;
         end
         tilt_angle = tilt_angle + (tilt_direction * event.dt * TILT_SPEED);
-        BeverageController:_tilt_sprites(tilt_angle);
+        BeverageController.beverage:rotate(tilt_angle);
     else
         BeverageController.trajectory:set_speed(0);
         -- animator:set_animation("IDLE_" .. animator:get_current_animation_name():gmatch("_([^%s]+)")())

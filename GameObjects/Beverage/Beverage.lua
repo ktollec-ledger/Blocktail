@@ -1,15 +1,17 @@
 ---@class Beverage : GameObjectCls
 local Beverage = GameObject();
 
+local DEFAULT_SIZE = 0.04;
+
 function Beverage:_initialize_sprites(sprites)
     for _, sprite in pairs(self.sprites) do
-        sprite:set_size(obe.transform.UnitVector(0.04, 0.04));
         self.components.SceneNode:add_child(sprite);
     end
     self.sprites.body:set_sublayer(1);
     self.sprites.hat:set_sublayer(0);
     self.sprites.eyes:set_sublayer(0);
     self.sprites.shoes:set_sublayer(0);
+    self:set_size(DEFAULT_SIZE);
 end
 
 ---Build a new Beverage
@@ -23,6 +25,7 @@ function Beverage:init(username, playable)
         shoes = Engine.Scene:create_sprite(("{}_shoes"):format(self.id))
     };
     self:make_equipment();
+    self:_initialize_sprites();
     if playable then
         Engine.Scene:create_game_object("BeverageController", ("%s_controller"):format(self.id)) {
             beverage = self
@@ -31,6 +34,7 @@ function Beverage:init(username, playable)
 end
 
 function Beverage:make_equipment(equipment)
+    print("Rebuilding equipment");
     ---@type ContractManager
     local contract = Engine.Scene:get_game_object("contract_manager");
     local equipment = contract:get_player_equipment(self.username);
@@ -47,5 +51,33 @@ function Beverage:make_equipment(equipment)
     if equipment.shoes ~= nil then
         self.sprites.shoes:load_texture(("sprites://Shoes/%s.png"):format(equipment.shoes));
     end
-    self:_initialize_sprites();
+end
+
+---@param angle number
+function Beverage:rotate(angle)
+    for _, sprite in pairs(self.sprites) do
+        sprite:set_rotation(angle);
+    end
+end
+
+---@param color obe.graphics.Color
+function Beverage:set_color(color)
+    for _, sprite in pairs(self.sprites) do
+        sprite:set_color(color);
+    end
+end
+
+---@param position obe.transform.UnitVector
+function Beverage:set_position(position)
+    self.components.SceneNode:set_position(position);
+end
+
+function Beverage:set_size(size)
+    for _, sprite in pairs(self.sprites) do
+        sprite:set_size(obe.transform.UnitVector(size, size));
+    end
+end
+
+function Event.Actions.SwapEquipment()
+    Beverage:make_equipment();
 end
